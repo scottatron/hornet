@@ -1,0 +1,2 @@
+class HornetController < ApplicationController
+end
