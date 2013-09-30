@@ -1,7 +1,7 @@
 module Hornet
   module Core
     class Engine < ::Rails::Engine
-      isolate_namespace Hornet
+      # isolate_namespace Hornet
       engine_name 'hornet'
     
       config.generators do |g|
