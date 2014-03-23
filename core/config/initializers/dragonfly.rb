@@ -34,9 +34,7 @@ Dragonfly.app.configure do
   url_format "/media/:job/:name"
 
   if Rails.env.development?
-    datastore DevelopmentDatastore.new
-      root_path: Rails.root.join('public/system/dragonfly', Rails.env),
-      server_root: Rails.root.join('public')
+    datastore DevelopmentDatastore.new root_path: Rails.root.join('public/system/dragonfly', Rails.env), server_root: Rails.root.join('public')
   else
     if ENV['S3_KEY']
       datastore :s3,
