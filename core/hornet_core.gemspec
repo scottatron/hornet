@@ -18,4 +18,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 3.2.12"
   s.add_dependency "dragonfly", "~> 1.0"
+  s.add_dependency "dragonfly-s3_data_store", "~> 1.0"
 end

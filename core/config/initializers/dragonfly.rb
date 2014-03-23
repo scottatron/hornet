@@ -1,4 +1,5 @@
 require 'dragonfly'
+require 'dragonfly/s3_data_store'
 
 class DevelopmentDatastore < Dragonfly::FileDataStore
 
@@ -33,11 +34,21 @@ Dragonfly.app.configure do
   url_format "/media/:job/:name"
 
   if Rails.env.development?
-    datastore DevelopmentDatastore.new root_path: Rails.root.join('public/system/dragonfly', Rails.env), server_root: Rails.root.join('public')
-  else
-    datastore :file,
+    datastore DevelopmentDatastore.new
       root_path: Rails.root.join('public/system/dragonfly', Rails.env),
       server_root: Rails.root.join('public')
+  else
+    if ENV['S3_KEY']
+      datastore :s3,
+        bucket_name: 'hornet-r32',
+        access_key_id: ENV['S3_KEY'],
+        secret_access_key: ENV['S3_SECRET'],
+        region: 'ap-southeast-2'
+    else
+      datastore :file,
+        root_path: Rails.root.join('public/system/dragonfly', Rails.env),
+        server_root: Rails.root.join('public')
+    end
   end
 end
 
