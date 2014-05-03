@@ -48,6 +48,11 @@ Dragonfly.app.configure do
         server_root: Rails.root.join('public')
     end
   end
+
+  processor :optim do |content, *args|
+    content
+  end
+
 end
 
 # Logger
