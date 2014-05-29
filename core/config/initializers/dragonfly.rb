@@ -38,7 +38,7 @@ Dragonfly.app.configure do
   else
     if ENV['S3_KEY']
       datastore :s3,
-        bucket_name: 'hornet-r32',
+        bucket_name: (ENV['S3_BUCKET'] || 'hornet-r32'),
         access_key_id: ENV['S3_KEY'],
         secret_access_key: ENV['S3_SECRET'],
         region: 'ap-southeast-2'
